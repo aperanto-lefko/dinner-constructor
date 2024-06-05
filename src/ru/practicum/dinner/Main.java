@@ -40,7 +40,7 @@ public class Main {
         String dishType = scanner.nextLine();
         System.out.println("Введите название блюда:");
         String dishName = scanner.nextLine();
-
+        dc.newDish(dishType, dishName);
         // добавьте новое блюдо
     }
 
