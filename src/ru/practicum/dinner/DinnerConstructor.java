@@ -6,15 +6,17 @@ import java.util.HashMap;
 
 public class DinnerConstructor {
     HashMap<String, ArrayList<String>> dishesByType;
+    ArrayList<ArrayList<String>> comboList;
 
     DinnerConstructor() {
         dishesByType = new HashMap<>();
+        comboList = new ArrayList<>();
     }
 
     void newDish(String dishType, String dishName) {
         if (dishesByType.containsKey(dishType)) {
             ArrayList<String> dishes = dishesByType.get(dishType);
-            if (dishes.contains(dishName)){
+            if (dishes.contains(dishName)) {
                 System.out.println("Такое блюдо уже есть в списке");
                 printAllDishesByType();
             } else {
@@ -38,6 +40,21 @@ public class DinnerConstructor {
             for (String dish : dishesInType) {
                 System.out.println("Наименование: " + dish);
             }
+        }
+    }
+
+    ArrayList<ArrayList<String>> creatingСombinations(int numberOfCombos, ArrayList<String> listOfTypes) {
+
+    }
+
+    boolean checkType(String type) {
+        boolean
+        return
+    }
+
+    void printListOfTypes(ArrayList<String> listOfTypes) {
+        for (String type : listOfTypes) {
+            System.out.println(type);
         }
     }
 }
