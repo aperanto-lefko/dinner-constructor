@@ -45,9 +45,10 @@ public class DinnerConstructor {
         }
     }
 
-    void creatingСombinations(int numberOfCombos, ArrayList<String> listOfTypes) {
-        HashMap<String, String> comboDishes = new HashMap<>();
-            for (int i = 1; i <= numberOfCombos; i++) {
+    void creatingCombinations(int numberOfCombos, ArrayList<String> listOfTypes) {
+
+        for (int i = 1; i <= numberOfCombos; i++) {
+            HashMap<String, String> comboDishes = new HashMap<>();
             for (String type : listOfTypes) {
                 ArrayList<String> dishesInType = dishesByType.get(type);
                 int dishNumber = new Random().nextInt(dishesInType.size());
@@ -55,8 +56,9 @@ public class DinnerConstructor {
                 String dish = dishesInType.get(dishNumber);
               //   System.out.println(dish); //проверка, удалить в итоговом
                 comboDishes.put(type, dish);
-                  }
+                 }
                 comboList.add(comboDishes);
+
 
             /*for (String key : comboDishes.keySet()) { //проверка, удалить в итоговом
                 System.out.println(key);
@@ -66,11 +68,13 @@ public class DinnerConstructor {
             }*/
 
         }
+        System.out.println(comboList);
         System.out.println("Возможные комбинации: ");
         for (int j = 0; j < comboList.size(); j++) {
             System.out.println("Комбо " + (j + 1) + " :");
             System.out.println(comboList.get(j));
         }
+        dishesByType.clear();
     }
 
     boolean checkType(String dishType) {
@@ -81,6 +85,12 @@ public class DinnerConstructor {
         return result;
     }
 
+    boolean chekList() {
+        boolean result = false;
+        if (!dishesByType.isEmpty()) {
+            result = true;
+        } return result;
+    }
 
     void printListOfTypes(ArrayList<String> listOfTypes) {
         System.out.println("Комбинации из: ");
