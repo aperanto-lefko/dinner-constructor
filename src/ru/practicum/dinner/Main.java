@@ -49,7 +49,8 @@ public class Main {
         ArrayList<String> listOfTypes = new ArrayList<>();
 
         System.out.println("Начинаем конструировать обед...");
-
+        System.out.println("Вы можете составить комбинации из следующих типов блюд");
+        dc.printAllDishesByType();
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
         int numberOfCombos = scanner.nextInt();
         scanner.nextLine();
@@ -58,13 +59,17 @@ public class Main {
         String nextItem = scanner.nextLine();
         //реализуйте ввод типов блюд
         while (!nextItem.isEmpty()) {
-            listOfTypes.add(nextItem);
+            if (dc.checkType(nextItem)) {
+                listOfTypes.add(nextItem);
+                nextItem = scanner.nextLine();
+            } else {
+                System.out.println("Такого типа нет в списке");
+                break;
+            }
         }
         dc.printListOfTypes(listOfTypes);
         dc.creatingСombinations(numberOfCombos, listOfTypes);
     }
-
-
 }
 // сгенерируйте комбинации блюд и выведите на экран
 

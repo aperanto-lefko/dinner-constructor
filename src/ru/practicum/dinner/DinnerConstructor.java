@@ -3,10 +3,11 @@ package ru.practicum.dinner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class DinnerConstructor {
     HashMap<String, ArrayList<String>> dishesByType;
-    ArrayList<ArrayList<String>> comboList;
+    ArrayList<HashMap<String, String>> comboList;
 
     DinnerConstructor() {
         dishesByType = new HashMap<>();
@@ -37,22 +38,52 @@ public class DinnerConstructor {
         for (String type : dishesByType.keySet()) {
             System.out.println("Тип блюда: " + type);
             ArrayList<String> dishesInType = dishesByType.get(type);
+            System.out.println("Наименование: ");
             for (String dish : dishesInType) {
-                System.out.println("Наименование: " + dish);
+                System.out.println(dish);
             }
         }
     }
 
-    ArrayList<ArrayList<String>> creatingСombinations(int numberOfCombos, ArrayList<String> listOfTypes) {
+    void creatingСombinations(int numberOfCombos, ArrayList<String> listOfTypes) {
+        HashMap<String, String> comboDishes = new HashMap<>();
+            for (int i = 1; i <= numberOfCombos; i++) {
+            for (String type : listOfTypes) {
+                ArrayList<String> dishesInType = dishesByType.get(type);
+                int dishNumber = new Random().nextInt(dishesInType.size());
+              // System.out.println(dishNumber); //проверка, удалить в итоговом
+                String dish = dishesInType.get(dishNumber);
+              //   System.out.println(dish); //проверка, удалить в итоговом
+                comboDishes.put(type, dish);
+                  }
+                comboList.add(comboDishes);
 
+            /*for (String key : comboDishes.keySet()) { //проверка, удалить в итоговом
+                System.out.println(key);
+                 }
+            for (String value : comboDishes.values()) {
+                System.out.println(value);
+            }*/
+
+        }
+        System.out.println("Возможные комбинации: ");
+        for (int j = 0; j < comboList.size(); j++) {
+            System.out.println("Комбо " + (j + 1) + " :");
+            System.out.println(comboList.get(j));
+        }
     }
 
-    boolean checkType(String type) {
-        boolean
-        return
+    boolean checkType(String dishType) {
+        boolean result = false;
+        if (dishesByType.containsKey(dishType)) {
+            result = true;
+        }
+        return result;
     }
+
 
     void printListOfTypes(ArrayList<String> listOfTypes) {
+        System.out.println("Комбинации из: ");
         for (String type : listOfTypes) {
             System.out.println(type);
         }
