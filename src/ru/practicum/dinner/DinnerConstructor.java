@@ -19,6 +19,7 @@ public class DinnerConstructor {
             ArrayList<String> dishes = dishesByType.get(dishType);
             if (dishes.contains(dishName)) {
                 System.out.println("Такое блюдо уже есть в списке");
+                System.out.println("");
                 printAllDishesByType();
             } else {
                 dishes.add(dishName);
@@ -42,6 +43,7 @@ public class DinnerConstructor {
             for (String dish : dishesInType) {
                 System.out.println(dish);
             }
+            System.out.println("");
         }
     }
 
@@ -52,44 +54,21 @@ public class DinnerConstructor {
             for (String type : listOfTypes) {
                 ArrayList<String> dishesInType = dishesByType.get(type);
                 int dishNumber = new Random().nextInt(dishesInType.size());
-              // System.out.println(dishNumber); //проверка, удалить в итоговом
                 String dish = dishesInType.get(dishNumber);
-              //   System.out.println(dish); //проверка, удалить в итоговом
                 comboDishes.put(type, dish);
-                 }
-                comboList.add(comboDishes);
-
-
-            /*for (String key : comboDishes.keySet()) { //проверка, удалить в итоговом
-                System.out.println(key);
-                 }
-            for (String value : comboDishes.values()) {
-                System.out.println(value);
-            }*/
-
+            }
+            comboList.add(comboDishes);
         }
-        System.out.println(comboList);
-        System.out.println("Возможные комбинации: ");
-        for (int j = 0; j < comboList.size(); j++) {
-            System.out.println("Комбо " + (j + 1) + " :");
-            System.out.println(comboList.get(j));
-        }
+        printComboLunch();
         dishesByType.clear();
     }
 
     boolean checkType(String dishType) {
-        boolean result = false;
-        if (dishesByType.containsKey(dishType)) {
-            result = true;
-        }
-        return result;
+        return dishesByType.containsKey(dishType);
     }
 
-    boolean chekList() {
-        boolean result = false;
-        if (!dishesByType.isEmpty()) {
-            result = true;
-        } return result;
+    boolean checkList() {
+        return !dishesByType.isEmpty();
     }
 
     void printListOfTypes(ArrayList<String> listOfTypes) {
@@ -97,5 +76,18 @@ public class DinnerConstructor {
         for (String type : listOfTypes) {
             System.out.println(type);
         }
+        System.out.println("");
+    }
+
+    void printComboLunch() {
+        System.out.println("Возможные комбинации блюд: ");
+        for (int j = 0; j < comboList.size(); j++) {
+            System.out.println("Комбо " + (j + 1) + ":");
+            HashMap<String, String> comboDishes = comboList.get(j);
+            for (String dish : comboDishes.values()) {
+                System.out.println(dish);
+            }
+        }
+        System.out.println("");
     }
 }
