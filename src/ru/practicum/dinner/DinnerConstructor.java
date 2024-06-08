@@ -8,6 +8,7 @@ import java.util.Random;
 public class DinnerConstructor {
     HashMap<String, ArrayList<String>> dishesByType;
     ArrayList<HashMap<String, String>> comboList;
+    Random random = new Random();
 
     DinnerConstructor() {
         dishesByType = new HashMap<>();
@@ -53,7 +54,7 @@ public class DinnerConstructor {
             HashMap<String, String> comboDishes = new HashMap<>();
             for (String type : listOfTypes) {
                 ArrayList<String> dishesInType = dishesByType.get(type);
-                int dishNumber = new Random().nextInt(dishesInType.size());
+                int dishNumber = random.nextInt(dishesInType.size());
                 String dish = dishesInType.get(dishNumber);
                 comboDishes.put(type, dish);
             }
@@ -61,13 +62,14 @@ public class DinnerConstructor {
         }
         printComboLunch();
         dishesByType.clear();
+        comboList.clear();
     }
 
     boolean checkType(String dishType) {
         return dishesByType.containsKey(dishType);
     }
 
-    boolean checkList() {
+    boolean isEmptyCheckList() {
         return !dishesByType.isEmpty();
     }
 

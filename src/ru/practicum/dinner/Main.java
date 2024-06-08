@@ -25,6 +25,9 @@ public class Main {
                     break;
                 case "3":
                     return;
+                default:
+                    System.out.println("Такой команды нет");
+                    break;
             }
         }
     }
@@ -46,37 +49,34 @@ public class Main {
     }
 
     private static void generateDishCombo() {
-        if (dc.checkList()) {
-            ArrayList<String> listOfTypes = new ArrayList<>();
-
-            System.out.println("Начинаем конструировать обед...");
-            System.out.println("Вы можете составить комбинации из следующих типов блюд:");
-            dc.printAllDishesByType();
-            System.out.println("Введите количество наборов, которые нужно сгенерировать:");
-            int numberOfCombos = scanner.nextInt();
-            scanner.nextLine();
-
-            System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
-            String nextItem = scanner.nextLine();
-            while (!nextItem.isEmpty()) {
-                if (dc.checkType(nextItem)) {
-                    listOfTypes.add(nextItem);
-                    nextItem = scanner.nextLine();
-                    dc.printListOfTypes(listOfTypes);
-                    dc.creatingCombinations(numberOfCombos, listOfTypes);
-                } else {
-                    System.out.println("Такого типа нет в списке");
-                    System.out.println("");
-                    break;
-                }
-            }
-
-        } else {
+        if (!dc.isEmptyCheckList()) {
             System.out.println("Список блюд пуст. Введите данные");
+            return;
         }
+        ArrayList<String> listOfTypes = new ArrayList<>();
+        System.out.println("Начинаем конструировать обед...");
+        System.out.println("Вы можете составить комбинации из следующих типов блюд:");
+        dc.printAllDishesByType();
+        System.out.println("Введите количество наборов, которые нужно сгенерировать:");
+        int numberOfCombos = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
+        String nextItem = scanner.nextLine();
+        while (!nextItem.isEmpty()) {
+            if (dc.checkType(nextItem)) {
+                listOfTypes.add(nextItem);
+                nextItem = scanner.nextLine();
+            } else {
+                System.out.println("Такого типа нет в списке");
+                System.out.println("");
+                break;
+            }
+        }
+        dc.printListOfTypes(listOfTypes);
+        dc.creatingCombinations(numberOfCombos, listOfTypes);
     }
 }
-// сгенерируйте комбинации блюд и выведите на экран
+
 
 
 
